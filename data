@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECharts - Internet User Growth</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <style>
+        #main {
+            width: 600px;
+            height: 400px;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">2023年全球互联网用户增长分布</h1>
+    <div id="main"></div>
+    <script>
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        option = {
+            title: {
+                text: '2023年全球互联网用户增长分布',
+                left: 'center',
+                textStyle: {
+                    fontSize: 18,
+                    fontWeight: 'bold',
+                    color: '#333'
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} 万人 ({d}%)'
+            },
+            legend: {
+                bottom: 10,
+                left: 'center',
+                data: ['亚洲', '非洲', '欧洲', '北美', '南美', '大洋洲']
+            },
+            color: ['#5470C6', '#91CC75', '#EE6666', '#FAC858', '#73C0DE', '#9A60B4'],
+            series: [
+                {
+                    name: '互联网用户',
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        show: true,
+                        position: 'outside',
+                        formatter: '{b}: {d}%'
+                    },
+                    emphasis: {
+                        label: {
+                            show: true,
+                            fontSize: '18',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    labelLine: {
+                        show: true
+                    },
+                    data: [
+                        { value: 2600, name: '亚洲' },
+                        { value: 570, name: '非洲' },
+                        { value: 750, name: '欧洲' },
+                        { value: 400, name: '北美' },
+                        { value: 300, name: '南美' },
+                        { value: 40, name: '大洋洲' }
+                    ]
+                }
+            ]
+        };
+
+        option && myChart.setOption(option);
+    </script>
+</body>
+</html>
